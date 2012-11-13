@@ -1,0 +1,29 @@
+//
+// Prefix header for all source files of the 'OAIHarvesterExample' target in the 'OAIHarvesterExample' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+
+    #import "TouchXML.h"
+
+    #import "OAIHarvester.h"
+
+    #define BASE_NAMESPACE @"http://www.openarchives.org/OAI/2.0/"
+
+    #define APP_CACHE_FOLDER [NSString stringWithFormat:@"%@/Library/Caches", NSHomeDirectory()]
+
+    //Parameters
+    #define APP_BASE_COLOR [UIColor colorWithRed:189/255.0f green:42/255.0f blue:35/255.0f/255.0f alpha:1]
+    #define APP_BASE_URL @"http://ebooks.serrelib.gr/serrelib-oai/request"
+    #define URL_BOOK_TXT @"***" //You have to fill this URL
+    #define URL_PAGE @"***" //You have to fill this URL
+
+#endif

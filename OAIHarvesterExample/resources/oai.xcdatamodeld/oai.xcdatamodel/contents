@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="11E53" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="OAIMetadataValue" representedClassName="OAIMetadataValue" syncable="YES">
+        <attribute name="element" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="schema" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="record" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OAIRecord" inverseName="metadata" inverseEntity="OAIRecord" syncable="YES"/>
+    </entity>
+    <entity name="OAIRecord" representedClassName="OAIRecord" syncable="YES">
+        <attribute name="datestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="metadata" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OAIMetadataValue" inverseName="record" inverseEntity="OAIMetadataValue" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="OAIMetadataValue" positionX="-99" positionY="207" width="128" height="90"/>
+        <element name="OAIRecord" positionX="99" positionY="117" width="128" height="90"/>
+    </elements>
+</model>
