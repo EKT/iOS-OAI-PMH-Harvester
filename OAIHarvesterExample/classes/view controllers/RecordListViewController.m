@@ -72,7 +72,7 @@
 #pragma mark -
 
 - (NSArray *) fetchAllRecordsFromDB{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    //NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     NSFetchRequest * allRecordsRequest = [[NSFetchRequest alloc] init];
     [allRecordsRequest setEntity:[NSEntityDescription entityForName:@"OAIRecord" inManagedObjectContext:oaiApp.managedObjectContext]];
@@ -82,7 +82,7 @@
     NSArray * records = [[oaiApp.managedObjectContext executeFetchRequest:allRecordsRequest error:&error] retain];
     [allRecordsRequest release];
     
-    [pool release];
+    //[pool release];
     
     NSMutableArray *helperArray = [[NSMutableArray alloc] initWithCapacity:[records count]];
     for (OAIRecord *record in records){
@@ -119,7 +119,7 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     OAIHarvester *harvester = [[OAIHarvester alloc] initWithBaseURL:APP_BASE_URL];
-    harvester.metadataPrefix = @"ese";
+    harvester.metadataPrefix = APP_BASE_METADATA_PREFIX;
     
     NSError *error = nil;
     NSArray *newrecords = [harvester listAllRecordsWithError:&error];
@@ -198,7 +198,8 @@
     return cell;
 }
 
-- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     OAIRecordHelper *recordHelper = [allRecords objectAtIndex:indexPath.row];

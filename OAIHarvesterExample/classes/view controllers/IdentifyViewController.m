@@ -189,12 +189,12 @@
             [temporaryController release];
         }
         
-        /*UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 46)];
+        UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 46)];
         bgImageView.contentMode = UIViewContentModeScaleToFill;
         bgImageView.image = [UIImage imageNamed:@"identify_cell_bg.png"];
         cell.backgroundView = bgImageView;
         cell.backgroundView.backgroundColor = [UIColor clearColor];
-        [bgImageView release];*/
+        [bgImageView release];
     
         cell.value.text = @"List Records";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -205,7 +205,8 @@
     return nil;
 }
 
-- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row==6){

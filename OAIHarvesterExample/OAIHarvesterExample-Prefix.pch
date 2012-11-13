@@ -23,6 +23,7 @@
     //Parameters
     #define APP_BASE_COLOR [UIColor colorWithRed:189/255.0f green:42/255.0f blue:35/255.0f/255.0f alpha:1]
     #define APP_BASE_URL @"http://ebooks.serrelib.gr/serrelib-oai/request"
+    #define APP_BASE_METADATA_PREFIX @"ese"
     #define URL_BOOK_TXT @"****"
     #define URL_PAGE @"****"
 

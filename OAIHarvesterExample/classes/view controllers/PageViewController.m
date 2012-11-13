@@ -76,6 +76,14 @@
     
     [scrollView addSubview:imageView];
     [imageView release];
+    
+    
+    UITapGestureRecognizer* dTap = [[UITapGestureRecognizer alloc] initWithTarget : self  action : @selector (doubleTap:)];
+    [dTap setDelaysTouchesBegan : YES];
+    dTap.numberOfTapsRequired = 2;
+    dTap.numberOfTouchesRequired = 1;
+    [scrollView addGestureRecognizer : dTap];
+    [dTap release];
 }
 
 #pragma mark - Rotation
@@ -97,6 +105,7 @@
     [scrollView setZoomScale:scrollView.minimumZoomScale];
     scrollView.frame = self.view.frame;
     imageView.frame = self.view.frame;
+    scrollView.contentSize = imageView.frame.size;
 }
 
 - (void)didReceiveMemoryWarning
@@ -116,8 +125,8 @@
     return imageView;
 }
 
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    imageView.frame = [self centeredFrameForScrollView:scrollView andUIView:imageView];;
+- (void)scrollViewDidZoom:(UIScrollView *)ascrollView {
+    imageView.frame = [self centeredFrameForScrollView:ascrollView andUIView:imageView];;
 }
 
 - (CGRect)centeredFrameForScrollView:(UIScrollView *)scroll andUIView:(UIView *)rView {
@@ -138,6 +147,17 @@
         frameToCenter.origin.y = 0;
     }
     return frameToCenter;
+}
+
+#pragma mark - UIGestures
+
+- (void) doubleTap : (UIGestureRecognizer*) sender{
+    if (scrollView.zoomScale == scrollView.minimumZoomScale) {
+        [scrollView setZoomScale:5.0 animated:YES];
+    }
+    else {
+        [scrollView setZoomScale:scrollView.minimumZoomScale animated:YES];
+    }
 }
 
 @end
