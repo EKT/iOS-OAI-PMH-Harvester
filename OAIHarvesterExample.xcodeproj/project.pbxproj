@@ -681,6 +681,7 @@
 					"\"$(SRCROOT)/../GitHub/OAI-PMH-Harvester-for-ObjC/DerivedData/OAIHarvester/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7s armv7";
 				WRAPPER_EXTENSION = app;
 			};
@@ -705,6 +706,7 @@
 					"\"$(SRCROOT)/../GitHub/OAI-PMH-Harvester-for-ObjC/DerivedData/OAIHarvester/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7s armv7";
 				WRAPPER_EXTENSION = app;
 			};

@@ -54,10 +54,16 @@
     
     CGRect frame;
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)){
-        frame = CGRectMake(0, 0, 320, 480-20-44);
+        if (IS_IPAD)
+            frame = CGRectMake(0, 0, 768, 1024-20-44);
+        else
+            frame = CGRectMake(0, 0, 320, 480-20-44);
     }
     else {
-        frame = CGRectMake(0, 0, 480, 320-20-32);
+        if (IS_IPAD)
+            frame = CGRectMake(0, 0, 1024, 768-20-44);
+        else
+            frame = CGRectMake(0, 0, 480, 320-20-32);
     }
     
     imageView = [[FastImageView alloc] initWithFrame:frame forOAIRecord:oaiRecordHelper forPage:page forLevel:5];
