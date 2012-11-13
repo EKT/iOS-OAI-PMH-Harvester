@@ -10,6 +10,8 @@
 
 @implementation FastImageView
 
+@synthesize delegate;
+
 - (id)initWithFrame:(CGRect)frame forOAIRecord:(OAIRecordHelper *)theOAIRecordHelper forPage:(int)thePage forLevel:(int)theLevel
 {
     self = [super initWithFrame:frame];
@@ -27,6 +29,8 @@
 - (void) dealloc{
     
     [oaiRecordHelper release];
+    [delegate release];
+    
     [super dealloc];
 }
 
@@ -52,6 +56,10 @@
         // [self performSelectorOnMainThread:@selector(setImage:) withObject:[UIImage imageWithData:data] waitUntilDone:YES];
         self.image = [UIImage imageWithData:data];
         [data writeToFile:imagePath atomically:YES];
+    }
+    
+    if (delegate && [delegate respondsToSelector:@selector(fastImageView:didLoadImage:)]){
+        [delegate fastImageView:self didLoadImage:self.image];
     }
     
     [pool release];

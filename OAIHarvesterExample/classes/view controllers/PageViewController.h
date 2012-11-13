@@ -10,12 +10,18 @@
 #import "FastImageView.h"
 #import "OAIRecordHelper.h"
 
-@interface PageViewController : UIViewController {
+@interface PageViewController : UIViewController <UIScrollViewDelegate, FastImageViewDelegate> {
     
     int page;
  
     OAIRecordHelper *oaiRecordHelper;
+    
+    UIImage *image;
+    FastImageView *imageView;
+    UIScrollView *scrollView;
 }
+
+@property (nonatomic, retain) UIImage *image;
 
 @property (nonatomic, assign) int page;
 @property (nonatomic, retain) OAIRecordHelper *oaiRecordHelper;

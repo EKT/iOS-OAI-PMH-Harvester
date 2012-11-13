@@ -37,7 +37,7 @@ AppDelegate* oaiApp;
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.viewController = [[[IdentifyViewController alloc] initWithNibName:@"IdentifyView" bundle:nil] autorelease];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    CustonNavigationController *navController = [[CustonNavigationController alloc] initWithRootViewController:self.viewController];
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
     

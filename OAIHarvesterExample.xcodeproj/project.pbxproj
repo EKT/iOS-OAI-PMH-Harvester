@@ -34,6 +34,7 @@
 		527323D81651A8010067DF4E /* FastImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 527323D71651A8010067DF4E /* FastImageView.m */; };
 		527323DB1651B7CF0067DF4E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 527323DA1651B7CF0067DF4E /* PageViewController.m */; };
 		527323DD1651B7E80067DF4E /* PageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527323DC1651B7E80067DF4E /* PageView.xib */; };
+		527323FB1652DAB20067DF4E /* CustonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 527323FA1652DAB10067DF4E /* CustonNavigationController.m */; };
 		52B42D4416501C2800A207A4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52B42D4616501C2800A207A4 /* Localizable.strings */; };
 		52B42D4A16501D3000A207A4 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52B42D4916501D3000A207A4 /* logo.jpg */; };
 		52B42D4E16501E3300A207A4 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B42D4C16501E3300A207A4 /* Icon.png */; };
@@ -109,6 +110,8 @@
 		527323D91651B7CF0067DF4E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		527323DA1651B7CF0067DF4E /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		527323DC1651B7E80067DF4E /* PageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageView.xib; sourceTree = "<group>"; };
+		527323F91652DAB10067DF4E /* CustonNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustonNavigationController.h; sourceTree = "<group>"; };
+		527323FA1652DAB10067DF4E /* CustonNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustonNavigationController.m; sourceTree = "<group>"; };
 		52B42D4516501C2800A207A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52B42D4716501C9700A207A4 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52B42D4816501C9700A207A4 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -221,6 +224,8 @@
 		523B0DCD164FE9D50005A058 /* view controllers */ = {
 			isa = PBXGroup;
 			children = (
+				527323F91652DAB10067DF4E /* CustonNavigationController.h */,
+				527323FA1652DAB10067DF4E /* CustonNavigationController.m */,
 				523B0DCE164FE9D50005A058 /* IdentifyViewController.h */,
 				523B0DCF164FE9D50005A058 /* IdentifyViewController.m */,
 				523B0DD0164FE9D50005A058 /* IdentifyView.xib */,
@@ -582,6 +587,7 @@
 				527323D01651963B0067DF4E /* RecordCell.m in Sources */,
 				527323D81651A8010067DF4E /* FastImageView.m in Sources */,
 				527323DB1651B7CF0067DF4E /* PageViewController.m in Sources */,
+				527323FB1652DAB20067DF4E /* CustonNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +673,7 @@
 				GCC_PREFIX_HEADER = "OAIHarvesterExample/OAIHarvesterExample-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "OAIHarvesterExample/OAIHarvesterExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../GitHub/OAI-PMH-Harvester-for-ObjC/DerivedData/OAIHarvester/Build/Intermediates/OAIHarvester.build/Debug-iphoneos/OAIHarvester.build/Objects-normal/armv7\"",
@@ -690,6 +697,7 @@
 				GCC_PREFIX_HEADER = "OAIHarvesterExample/OAIHarvesterExample-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "OAIHarvesterExample/OAIHarvesterExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../GitHub/OAI-PMH-Harvester-for-ObjC/DerivedData/OAIHarvester/Build/Intermediates/OAIHarvester.build/Debug-iphoneos/OAIHarvester.build/Objects-normal/armv7\"",

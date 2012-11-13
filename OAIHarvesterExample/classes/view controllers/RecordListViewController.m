@@ -39,6 +39,23 @@
     self.allRecords = array;
 }
 
+#pragma mark - Rotation
+
+- (BOOL) shouldAutorotate{
+    return YES;
+}
+
+- (NSUInteger) supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
+}
+
+//iOS5 support
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    return UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
+}
+
+#pragma mark - Memory Management
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -51,6 +68,8 @@
     
     [super dealloc];
 }
+
+#pragma mark -
 
 - (NSArray *) fetchAllRecordsFromDB{
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];

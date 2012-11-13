@@ -30,12 +30,6 @@
     harvester.metadataPrefix = @"oai_dc";
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Memory management
 
 - (void) dealloc{
@@ -44,6 +38,27 @@
     [listTableView release];
     
     [super dealloc];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Rotation
+
+- (BOOL) shouldAutorotate{
+    return YES;
+}
+
+- (NSUInteger) supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
+}
+
+//iOS5 support
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    return UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
 }
 
 #pragma mark - UITableView Datasource/Delegate
