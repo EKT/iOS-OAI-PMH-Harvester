@@ -7,6 +7,7 @@
 //
 
 #import "PageViewController.h"
+#import "ReaderViewController.h"
 
 @interface PageViewController ()
 
@@ -14,7 +15,7 @@
 
 @implementation PageViewController
 
-@synthesize page, oaiRecordHelper, image;
+@synthesize page, oaiRecordHelper, image, fatherController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil oaiRecordHelper:(OAIRecordHelper *)theOAIRecordHelper andPage:(int)thePage
 {
@@ -31,6 +32,7 @@
     
     [oaiRecordHelper release];
     [image release];
+    [fatherController release];
     
     [super dealloc];
 }
@@ -53,6 +55,7 @@
 	// Do any additional setup after loading the view.
     
     CGRect frame;
+    
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)){
         if (IS_IPAD)
             frame = CGRectMake(0, 0, 768, 1024-20-44);
@@ -65,6 +68,8 @@
         else
             frame = CGRectMake(0, 0, 480, 320-20-32);
     }
+    
+    self.view.frame = frame;
     
     imageView = [[FastImageView alloc] initWithFrame:frame forOAIRecord:oaiRecordHelper forPage:page forLevel:5];
     imageView.delegate = self;
@@ -83,6 +88,11 @@
     [scrollView addSubview:imageView];
     [imageView release];
     
+    UITapGestureRecognizer *sTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    sTap.numberOfTapsRequired =1;
+    [sTap setDelaysTouchesBegan : YES];
+    [scrollView addGestureRecognizer:sTap];
+    [sTap release];
     
     UITapGestureRecognizer* dTap = [[UITapGestureRecognizer alloc] initWithTarget : self  action : @selector (doubleTap:)];
     [dTap setDelaysTouchesBegan : YES];
@@ -90,28 +100,63 @@
     dTap.numberOfTouchesRequired = 1;
     [scrollView addGestureRecognizer : dTap];
     [dTap release];
+    
+    [sTap requireGestureRecognizerToFail:dTap];
 }
 
 #pragma mark - Rotation
 
-- (BOOL) shouldAutorotate{
-    return YES;
-}
-
-- (NSUInteger) supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskAllButUpsideDown;
-}
-
-//iOS5 support
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
-    return YES;
-}
-
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    /*[scrollView setZoomScale:scrollView.minimumZoomScale];
+    scrollView.frame = self.view.frame;
+    imageView.frame = self.view.frame;
+    scrollView.contentSize = imageView.frame.size;*/
+    
+    /*[UIView beginAnimations: @"moveField"context: nil];
+    [UIView setAnimationDelegate: self];
+    [UIView setAnimationDuration: 0.5];
+    [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+    */
+    
+    BOOL hidden = fatherController.navigationBarHidden;
+    CGRect frame;
+    if (!hidden){
+        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)){
+            if (IS_IPAD)
+                frame = CGRectMake(0, 0, 768, 1024-20-44);
+            else
+                frame = CGRectMake(0, 0, 320, 480-20-44);
+        }
+        else {
+            if (IS_IPAD)
+                frame = CGRectMake(0, 0, 1024, 768-20-44);
+            else
+                frame = CGRectMake(0, 0, 480, 320-20-32);
+        }
+        
+    }
+    else {
+        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)){
+            if (IS_IPAD)
+                frame = CGRectMake(0, 0, 768, 1024-20);
+            else
+                frame = CGRectMake(0, 0, 320, 480-20);
+        }
+        else {
+            if (IS_IPAD)
+                frame = CGRectMake(0, 0, 1024, 768-20);
+            else
+                frame = CGRectMake(0, 0, 480, 320-20);
+        }
+    }
     [scrollView setZoomScale:scrollView.minimumZoomScale];
+    //scrollView.minimumZoomScale = scrollView.frame.size.width / imageView.frame.size.width;
+    self.view.frame = frame;
     scrollView.frame = self.view.frame;
     imageView.frame = self.view.frame;
     scrollView.contentSize = imageView.frame.size;
+    
+    //[UIView commitAnimations];
 }
 
 - (void)didReceiveMemoryWarning
@@ -159,11 +204,62 @@
 
 - (void) doubleTap : (UIGestureRecognizer*) sender{
     if (scrollView.zoomScale == scrollView.minimumZoomScale) {
-        [scrollView setZoomScale:5.0 animated:YES];
+        [scrollView setZoomScale:2.0 animated:YES];
     }
     else {
         [scrollView setZoomScale:scrollView.minimumZoomScale animated:YES];
     }
+}
+
+- (void) singleTap : (UIGestureRecognizer*) sender{
+    [UIView beginAnimations: @"moveField"context: nil];
+    [UIView setAnimationDelegate: self];
+    [UIView setAnimationDuration: 0.5];
+    [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+    
+    BOOL hidden = fatherController.navigationBarHidden;
+    CGRect frame;
+    if (hidden){
+        [fatherController setNavigationBarHidden:NO animated:YES];
+        
+        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)){
+            if (IS_IPAD)
+                frame = CGRectMake(0, 0, 768, 1024-20-44);
+            else
+                frame = CGRectMake(0, 0, 320, 480-20-44);
+        }
+        else {
+            if (IS_IPAD)
+                frame = CGRectMake(0, 0, 1024, 768-20-44);
+            else
+                frame = CGRectMake(0, 0, 480, 320-20-32);
+        }
+
+    }
+    else {
+        [fatherController setNavigationBarHidden:YES animated:YES];
+        
+        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)){
+            if (IS_IPAD)
+                frame = CGRectMake(0, 0, 768, 1024-20);
+            else
+                frame = CGRectMake(0, 0, 320, 480-20);
+        }
+        else {
+            if (IS_IPAD)
+                frame = CGRectMake(0, 0, 1024, 768-20);
+            else
+                frame = CGRectMake(0, 0, 480, 320-20);
+        }
+    }
+    [scrollView setZoomScale:scrollView.minimumZoomScale];
+    //scrollView.minimumZoomScale = scrollView.frame.size.width / imageView.frame.size.width;
+    self.view.frame = frame;
+    scrollView.frame = self.view.frame;
+    imageView.frame = self.view.frame;
+    scrollView.contentSize = imageView.frame.size;
+    
+    [UIView commitAnimations];
 }
 
 @end

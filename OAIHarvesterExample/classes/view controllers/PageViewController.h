@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "FastImageView.h"
 #import "OAIRecordHelper.h"
+#import <UIKit/UIGestureRecognizerSubclass.h>
+#import "ThumbnailView.h"
+
+@class ReaderViewController;
 
 @interface PageViewController : UIViewController <UIScrollViewDelegate, FastImageViewDelegate> {
     
@@ -19,7 +23,11 @@
     UIImage *image;
     FastImageView *imageView;
     UIScrollView *scrollView;
+    
+    UINavigationController *fatherController;
 }
+
+@property (nonatomic, retain) UINavigationController *fatherController;
 
 @property (nonatomic, retain) UIImage *image;
 

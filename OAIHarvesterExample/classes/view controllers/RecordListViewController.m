@@ -32,11 +32,10 @@
     
     recordTable.delegate = self;
     
-    NSArray *array = [self fetchAllRecordsFromDB];
-    if ([array count] == 0){
+    [self performSelectorOnMainThread:@selector(fetchAllRecordsFromDB) withObject:nil waitUntilDone:YES];
+    if ([self.allRecords count] == 0){
         [NSThread detachNewThreadSelector:@selector(downloadRecords) toTarget:self withObject:nil];
     }
-    self.allRecords = array;
 }
 
 #pragma mark - Rotation
@@ -71,7 +70,7 @@
 
 #pragma mark -
 
-- (NSArray *) fetchAllRecordsFromDB{
+- (void) fetchAllRecordsFromDB{
     //NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     NSFetchRequest * allRecordsRequest = [[NSFetchRequest alloc] init];
@@ -91,7 +90,7 @@
     }
     [records release];
     
-    return [helperArray autorelease];
+    self.allRecords = [helperArray autorelease];
 }
 
 - (void) deleteAllRecordsFromDB{
@@ -204,56 +203,12 @@
     
     OAIRecordHelper *recordHelper = [allRecords objectAtIndex:indexPath.row];
     
-    NSDictionary *options =
-    [NSDictionary dictionaryWithObject:
-     [NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin]
-                                forKey: UIPageViewControllerOptionSpineLocationKey];
-    
-    UIPageViewController *pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:options];
-    pageViewController.dataSource = self;
-    pageViewController.delegate = self;
-    
-    PageViewController *notesPageController = [[PageViewController alloc]
-                                                initWithNibName:@"PageView" bundle:nil oaiRecordHelper:recordHelper andPage:0];
-    NSArray *pageViewControllers = [NSArray arrayWithObjects:notesPageController, nil];
-    [pageViewController setViewControllers:pageViewControllers
-                                      direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-
-    
-//    [self.view addSubview:pageViewController.view];
-//    pageViewController.view.frame = CGRectMake(0, 0, 320, 416);
+    ReaderViewController *pageViewController = [[ReaderViewController alloc] initWithOAIRecordHelper:recordHelper];
     [self.navigationController pushViewController:pageViewController animated:YES];
     [pageViewController didMoveToParentViewController:self];
     
-  //  [pageViewController release];
 }
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
-    PageViewController *controller = (PageViewController *)viewController;
-    
-    int oldPage = controller.page;
-    //if (oldPage==0)
-    //    return nil;
-    
-    PageViewController *notesPageController = [[PageViewController alloc]
-                                               initWithNibName:@"PageView" bundle:nil oaiRecordHelper:controller.oaiRecordHelper andPage:(oldPage+1)];
-    
-    return [notesPageController autorelease];
-}
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
-    
-    PageViewController *controller = (PageViewController *)viewController;
-    
-    int oldPage = controller.page;
-    if (oldPage==0)
-        return nil;
-    
-    PageViewController *notesPageController = [[PageViewController alloc]
-                                               initWithNibName:@"PageView" bundle:nil oaiRecordHelper:controller.oaiRecordHelper andPage:(oldPage-1)];
-    
-    return [notesPageController autorelease];
-}
 
 
 @end
