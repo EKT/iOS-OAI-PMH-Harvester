@@ -184,7 +184,8 @@
     }
     
     OAIRecordHelper *recordHelper = [allRecords objectAtIndex:indexPath.row];
-    OAIRecord *record = recordHelper.oaiRecord;
+    [recordHelper initialize];
+    //OAIRecord *record = recordHelper.oaiRecord;
         
     cell.titleLabel.text = [recordHelper getTitle];
     cell.creatorLabel.text = [recordHelper getCreator];

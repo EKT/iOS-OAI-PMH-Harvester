@@ -31,6 +31,7 @@
 @property (nonatomic, retain) NSString *digitalIdentifier;
 
 - (id)initWithOAIRecord:(OAIRecord *)oaiRecord;
+- (void) initialize;
 
 - (NSString *) getTitle;
 - (NSString *) getDigitalIdentifier;

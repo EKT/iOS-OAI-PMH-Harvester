@@ -24,8 +24,7 @@
         self.thumbnailData = nil;
         self.pages = nil;
         
-        self.identifier = [self getIdentifier];
-        self.digitalIdentifier = [self getDigitalIdentifier];
+        
     }
     return self;
 }
@@ -42,6 +41,11 @@
     [super dealloc];
 }
 
+- (void) initialize{
+    self.identifier = [self getIdentifier];
+    self.digitalIdentifier = [self getDigitalIdentifier];
+}
+
 - (NSString *) getTitle{
     return [self getMetadataValueForSchema:@"dc" andElement:@"title"];
 }
@@ -56,10 +60,10 @@
 
 - (NSString *) getIdentifier{
     //return [self getMetadataValueForSchema:@"dc" andElement:@"digitalidentofier"];
-    NSString *identifier = [self getMetadataValueForSchema:@"dc" andElement:@"identifier"];
+    NSString *identifier2 = [self getMetadataValueForSchema:@"dc" andElement:@"identifier"];
     
-    NSRange range = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
-    return [identifier substringFromIndex:(range.location+1)];
+    NSRange range = [identifier2 rangeOfString:@"/" options:NSBackwardsSearch];
+    return [identifier2 substringFromIndex:(range.location+1)];
 }
 
 - (NSString *) getDigitalIdentifier{
@@ -71,8 +75,8 @@
 }
 
 - (NSString *) getMetadataValueForSchema:(NSString *)schema andElement:(NSString *)element{
-    NSLog(@"element = %@", element);
-    assert([NSThread isMainThread]);
+    //NSLog(@"element = %@", element);
+    //assert([NSThread isMainThread]);
     for (OAIMetadataValue *metadataValue in oaiRecord.metadata){
         if ([metadataValue.element isEqualToString:element] && [metadataValue.schema isEqualToString:schema]){
             return metadataValue.value;
