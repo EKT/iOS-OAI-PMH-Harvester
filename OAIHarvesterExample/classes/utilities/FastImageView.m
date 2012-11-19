@@ -39,19 +39,19 @@
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSString *basePath = [NSString stringWithFormat:@"%@/%@/imagecache", APP_CACHE_FOLDER, [oaiRecordHelper getIdentifier]];
+    NSString *basePath = [NSString stringWithFormat:@"%@/%@/imagecache", APP_CACHE_FOLDER, oaiRecordHelper.identifier];
     if (![fileManager fileExistsAtPath:basePath]){
         NSError *error = nil;
         //Create base path
         [fileManager createDirectoryAtPath:basePath withIntermediateDirectories:YES attributes:nil error:&error];
     }
     
-    NSString *imagePath = [NSString stringWithFormat:@"%@/%@/imagecache/p%i_l%i.jpg", APP_CACHE_FOLDER, [oaiRecordHelper getIdentifier], page, level];
+    NSString *imagePath = [NSString stringWithFormat:@"%@/%@/imagecache/p%i_l%i.jpg", APP_CACHE_FOLDER, oaiRecordHelper.identifier, page, level];
     if ([fileManager fileExistsAtPath:imagePath]){
         self.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:imagePath]];
     }
     else {
-        NSString *urlString = [NSString stringWithFormat:URL_PAGE, [oaiRecordHelper getDigitalIdentifier], [oaiRecordHelper getPage:page], level];
+        NSString *urlString = [NSString stringWithFormat:URL_PAGE, oaiRecordHelper.digitalIdentifier, [oaiRecordHelper getPage:page], level];
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
         // [self performSelectorOnMainThread:@selector(setImage:) withObject:[UIImage imageWithData:data] waitUntilDone:YES];
         self.image = [UIImage imageWithData:data];

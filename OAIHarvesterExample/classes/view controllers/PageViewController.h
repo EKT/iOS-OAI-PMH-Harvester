@@ -25,9 +25,11 @@
     UIScrollView *scrollView;
     
     UINavigationController *fatherController;
+    ReaderViewController *readerViewController;
 }
 
 @property (nonatomic, retain) UINavigationController *fatherController;
+@property (nonatomic, retain) ReaderViewController *readerViewController;
 
 @property (nonatomic, retain) UIImage *image;
 

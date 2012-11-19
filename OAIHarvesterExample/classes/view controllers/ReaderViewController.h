@@ -11,16 +11,20 @@
 #import "PageViewController.h"
 #import "OAIRecordHelper.h"
 
-@interface ReaderViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate> {
+@interface ReaderViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, ThumbnailViewDelegate> {
     
     ThumbnailView *thumbView;
     OAIRecordHelper *oaiRecordHelper;
     UIPageViewController *pageViewController;
+    
+    int currentPage;
+    BOOL thumbsShown;
 }
 
 @property (nonatomic, retain) OAIRecordHelper *oaiRecordHelper;
 @property (nonatomic, retain) ThumbnailView *thumbView;
 
 - (id)initWithOAIRecordHelper:(OAIRecordHelper *)oaiRecordHelper;
+- (void) updateUI;
 
 @end

@@ -17,11 +17,18 @@
     NSData *thumbnailData;
     int numberOfPages;
     NSMutableArray *pages;
+    
+    //metadata
+    NSString *identifier;
+    NSString *digitalIdentifier;
 }
 
 @property (nonatomic, retain) OAIRecord *oaiRecord;
 @property (nonatomic, retain) NSData *thumbnailData;
 @property (nonatomic, retain) NSMutableArray *pages;
+
+@property (nonatomic, retain) NSString *identifier;
+@property (nonatomic, retain) NSString *digitalIdentifier;
 
 - (id)initWithOAIRecord:(OAIRecord *)oaiRecord;
 
@@ -31,5 +38,6 @@
 - (NSString *) getDate;
 - (NSString *) getIdentifier;
 - (NSString *)getPage:(int)page;
+- (int) getPagesCount;
 
 @end

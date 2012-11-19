@@ -15,7 +15,7 @@
 
 @implementation PageViewController
 
-@synthesize page, oaiRecordHelper, image, fatherController;
+@synthesize page, oaiRecordHelper, image, fatherController, readerViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil oaiRecordHelper:(OAIRecordHelper *)theOAIRecordHelper andPage:(int)thePage
 {
@@ -33,6 +33,7 @@
     [oaiRecordHelper release];
     [image release];
     [fatherController release];
+    [readerViewController release];
     
     [super dealloc];
 }
@@ -53,6 +54,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.view.autoresizesSubviews = NO;
     
     CGRect frame;
     
@@ -83,6 +86,7 @@
     scrollView.contentSize = imageView.frame.size;
     [self.view addSubview:scrollView];
     scrollView.backgroundColor = [UIColor lightGrayColor];
+    scrollView.autoresizesSubviews = NO;
     [scrollView release];
     
     [scrollView addSubview:imageView];
@@ -121,7 +125,7 @@
     BOOL hidden = fatherController.navigationBarHidden;
     CGRect frame;
     if (!hidden){
-        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)){
+        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)){
             if (IS_IPAD)
                 frame = CGRectMake(0, 0, 768, 1024-20-44);
             else
@@ -136,7 +140,7 @@
         
     }
     else {
-        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)){
+        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)){
             if (IS_IPAD)
                 frame = CGRectMake(0, 0, 768, 1024-20);
             else
@@ -258,6 +262,8 @@
     scrollView.frame = self.view.frame;
     imageView.frame = self.view.frame;
     scrollView.contentSize = imageView.frame.size;
+    
+    [readerViewController updateUI];
     
     [UIView commitAnimations];
 }

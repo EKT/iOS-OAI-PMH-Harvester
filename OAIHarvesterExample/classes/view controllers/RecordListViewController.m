@@ -32,7 +32,8 @@
     
     recordTable.delegate = self;
     
-    [self performSelectorOnMainThread:@selector(fetchAllRecordsFromDB) withObject:nil waitUntilDone:YES];
+    [self fetchAllRecordsFromDB];
+//    [self performSelectorOnMainThread:@selector(fetchAllRecordsFromDB) withObject:nil waitUntilDone:YES];
     if ([self.allRecords count] == 0){
         [NSThread detachNewThreadSelector:@selector(downloadRecords) toTarget:self withObject:nil];
     }
