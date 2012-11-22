@@ -15,7 +15,7 @@
 
 @implementation PageViewController
 
-@synthesize page, oaiRecordHelper, image, fatherController, readerViewController;
+@synthesize page, oaiRecordHelper, image, fatherController, readerViewController, shouldUpdate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil oaiRecordHelper:(OAIRecordHelper *)theOAIRecordHelper andPage:(int)thePage
 {
@@ -24,6 +24,7 @@
         // Custom initialization
         page = thePage;
         self.oaiRecordHelper = theOAIRecordHelper;
+        shouldUpdate = YES;
     }
     return self;
 }
@@ -112,54 +113,55 @@
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     /*[scrollView setZoomScale:scrollView.minimumZoomScale];
-    scrollView.frame = self.view.frame;
-    imageView.frame = self.view.frame;
-    scrollView.contentSize = imageView.frame.size;*/
+     scrollView.frame = self.view.frame;
+     imageView.frame = self.view.frame;
+     scrollView.contentSize = imageView.frame.size;*/
     
     /*[UIView beginAnimations: @"moveField"context: nil];
-    [UIView setAnimationDelegate: self];
-    [UIView setAnimationDuration: 0.5];
-    [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-    */
+     [UIView setAnimationDelegate: self];
+     [UIView setAnimationDuration: 0.5];
+     [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+     */
     
-    BOOL hidden = fatherController.navigationBarHidden;
-    CGRect frame;
-    if (!hidden){
-        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)){
-            if (IS_IPAD)
-                frame = CGRectMake(0, 0, 768, 1024-20-44);
-            else
-                frame = CGRectMake(0, 0, 320, 480-20-44);
+    if (shouldUpdate){
+        BOOL hidden = fatherController.navigationBarHidden;
+        CGRect frame;
+        if (!hidden){
+            if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)){
+                if (IS_IPAD)
+                    frame = CGRectMake(0, 0, 768, 1024-20-44);
+                else
+                    frame = CGRectMake(0, 0, 320, 480-20-44);
+            }
+            else {
+                if (IS_IPAD)
+                    frame = CGRectMake(0, 0, 1024, 768-20-44);
+                else
+                    frame = CGRectMake(0, 0, 480, 320-20-32);
+            }
+            
         }
         else {
-            if (IS_IPAD)
-                frame = CGRectMake(0, 0, 1024, 768-20-44);
-            else
-                frame = CGRectMake(0, 0, 480, 320-20-32);
+            if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)){
+                if (IS_IPAD)
+                    frame = CGRectMake(0, 0, 768, 1024-20);
+                else
+                    frame = CGRectMake(0, 0, 320, 480-20);
+            }
+            else {
+                if (IS_IPAD)
+                    frame = CGRectMake(0, 0, 1024, 768-20);
+                else
+                    frame = CGRectMake(0, 0, 480, 320-20);
+            }
         }
-        
+        [scrollView setZoomScale:scrollView.minimumZoomScale];
+        //scrollView.minimumZoomScale = scrollView.frame.size.width / imageView.frame.size.width;
+        self.view.frame = frame;
+        scrollView.frame = self.view.frame;
+        imageView.frame = self.view.frame;
+        scrollView.contentSize = imageView.frame.size;
     }
-    else {
-        if (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)){
-            if (IS_IPAD)
-                frame = CGRectMake(0, 0, 768, 1024-20);
-            else
-                frame = CGRectMake(0, 0, 320, 480-20);
-        }
-        else {
-            if (IS_IPAD)
-                frame = CGRectMake(0, 0, 1024, 768-20);
-            else
-                frame = CGRectMake(0, 0, 480, 320-20);
-        }
-    }
-    [scrollView setZoomScale:scrollView.minimumZoomScale];
-    //scrollView.minimumZoomScale = scrollView.frame.size.width / imageView.frame.size.width;
-    self.view.frame = frame;
-    scrollView.frame = self.view.frame;
-    imageView.frame = self.view.frame;
-    scrollView.contentSize = imageView.frame.size;
-    
     //[UIView commitAnimations];
 }
 
@@ -181,7 +183,8 @@
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)ascrollView {
-    imageView.frame = [self centeredFrameForScrollView:ascrollView andUIView:imageView];;
+    imageView.frame = [self centeredFrameForScrollView:ascrollView andUIView:imageView];
+    shouldUpdate = NO;
 }
 
 - (CGRect)centeredFrameForScrollView:(UIScrollView *)scroll andUIView:(UIView *)rView {
@@ -209,9 +212,11 @@
 - (void) doubleTap : (UIGestureRecognizer*) sender{
     if (scrollView.zoomScale == scrollView.minimumZoomScale) {
         [scrollView setZoomScale:2.0 animated:YES];
+        shouldUpdate = NO;
     }
     else {
         [scrollView setZoomScale:scrollView.minimumZoomScale animated:YES];
+        shouldUpdate = YES;
     }
 }
 
@@ -238,7 +243,7 @@
             else
                 frame = CGRectMake(0, 0, 480, 320-20-32);
         }
-
+        
     }
     else {
         [fatherController setNavigationBarHidden:YES animated:YES];

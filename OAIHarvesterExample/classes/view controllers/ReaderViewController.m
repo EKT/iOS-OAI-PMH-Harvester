@@ -114,6 +114,7 @@
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     for (PageViewController *viewcontroller in pageViewController.viewControllers){
+        viewcontroller.shouldUpdate = YES;
         [viewcontroller didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     }
     

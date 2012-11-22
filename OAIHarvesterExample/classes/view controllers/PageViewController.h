@@ -26,7 +26,11 @@
     
     UINavigationController *fatherController;
     ReaderViewController *readerViewController;
+    
+    BOOL shouldUpdate;
 }
+
+@property (nonatomic, assign) BOOL shouldUpdate;
 
 @property (nonatomic, retain) UINavigationController *fatherController;
 @property (nonatomic, retain) ReaderViewController *readerViewController;
