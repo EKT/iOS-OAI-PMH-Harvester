@@ -116,27 +116,27 @@
     
     switch (indexPath.row) {
         case 0:
-            displayLabel = @"Repository Name";
+            displayLabel = @"[Repository Name]";
             displayValue = harvester.identify.repositoryName;
             break;
         case 1:
-            displayLabel = @"Base URL";
+            displayLabel = @"[Base URL]";
             displayValue = harvester.identify.baseURL;
             break;
         case 2:
-            displayLabel = @"Protocol Version";
+            displayLabel = @"[Protocol Version]";
             displayValue = harvester.identify.protocolVersion;
             break;
         case 3:
-            displayLabel = @"Admin Email";
+            displayLabel = @"[Admin Email]";
             displayValue = [harvester.identify.adminEmails objectAtIndex:0];
             break;
         case 4:
-            displayLabel = @"Earliest Datestamp";
+            displayLabel = @"[Earliest Datestamp]";
             displayValue = harvester.identify.earliestDatestamp;
             break;
         case 5:
-            displayLabel = @"Granularity";
+            displayLabel = @"[Granularity]";
             displayValue = harvester.identify.granularity;
             break;
         default:

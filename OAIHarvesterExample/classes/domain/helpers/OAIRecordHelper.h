@@ -32,6 +32,7 @@
 
 - (id)initWithOAIRecord:(OAIRecord *)oaiRecord;
 - (void) initialize;
+- (NSArray *) getMetadataDictionary;
 
 - (NSString *) getTitle;
 - (NSString *) getDigitalIdentifier;

@@ -11,6 +11,7 @@
 @interface OAIRecordHelper()
 
 - (NSString *) getMetadataValueForSchema:(NSString *)schema andElement:(NSString *)element;
+- (NSArray *) getMetadataValueArrayForSchema:(NSString *)schema andElement:(NSString *)element;
 
 @end
 
@@ -84,6 +85,23 @@
     }
     
     return @"---";
+}
+
+- (NSArray *) getMetadataValueArrayForSchema:(NSString *)schema andElement:(NSString *)element{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    for (OAIMetadataValue *metadataValue in oaiRecord.metadata){
+        if ([metadataValue.element isEqualToString:element] && [metadataValue.schema isEqualToString:schema]){
+            [array addObject:metadataValue.value];
+        }
+    }
+    
+    if ([array count] == 0){
+        [array release];
+        return nil;
+    }
+    
+    return [array autorelease];
 }
 
 - (int) getPagesCount{
@@ -166,6 +184,26 @@
     else {
         return [self.pages objectAtIndex:page];
     }
+}
+
+- (NSArray *) getMetadataDictionary {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    NSArray *displayableMetadataArray = [NSArray arrayWithObjects:@"dc.title", @"dc.creator", @"dc.date", @"dc.publisher", @"dc.subject", @"dc.source", @"dc.language", @"dc.extent", @"dc.type", @"europeana.dataProvider", @"europeana.rights", @"europeana.isShownAt", nil];
+    
+    for (NSString * displayableMetadata in displayableMetadataArray){
+        NSRange range = [displayableMetadata rangeOfString:@"."];
+        NSString *schema = [displayableMetadata substringToIndex:(range.location)];
+        NSString *element = [displayableMetadata substringFromIndex:(range.location + 1)];
+        
+        NSArray *values = [self getMetadataValueArrayForSchema:schema andElement:element];
+        if (values){
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:values forKey:displayableMetadata];
+            [result addObject:dictionary];
+        }
+    }
+    
+    return [result autorelease];
 }
 
 @end

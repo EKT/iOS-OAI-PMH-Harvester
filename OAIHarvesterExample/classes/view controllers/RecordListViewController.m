@@ -205,10 +205,15 @@
     
     OAIRecordHelper *recordHelper = [allRecords objectAtIndex:indexPath.row];
     
+    MetadataViewController *controller = [[MetadataViewController alloc] initWithNibName:@"MetadataView" bundle:[NSBundle mainBundle] oaiRecordHelper:recordHelper];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+    
+    /*
     ReaderViewController *pageViewController = [[ReaderViewController alloc] initWithOAIRecordHelper:recordHelper];
     [self.navigationController pushViewController:pageViewController animated:YES];
     [pageViewController didMoveToParentViewController:self];
-    
+    */
 }
 
 

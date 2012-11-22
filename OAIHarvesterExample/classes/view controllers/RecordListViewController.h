@@ -15,6 +15,7 @@
 #import "FastImageView.h"
 #import "PageViewController.h"
 #import "ReaderViewController.h"
+#import "MetadataViewController.h"
 
 @interface RecordListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     
