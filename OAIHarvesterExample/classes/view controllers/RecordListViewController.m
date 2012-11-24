@@ -14,13 +14,15 @@
 
 @implementation RecordListViewController
 
-@synthesize allRecords, recordTable;
+@synthesize allRecords, recordTable, browseType, browseValue;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        browseType = nil;
+        browseValue = nil;
     }
     return self;
 }
@@ -33,10 +35,16 @@
     recordTable.delegate = self;
     
     [self fetchAllRecordsFromDB];
-//    [self performSelectorOnMainThread:@selector(fetchAllRecordsFromDB) withObject:nil waitUntilDone:YES];
     if ([self.allRecords count] == 0){
         [NSThread detachNewThreadSelector:@selector(downloadRecords) toTarget:self withObject:nil];
     }
+    
+    //Display right bar button
+    if (!browseValue && !browseType){
+        browseBarItem = [[UIBarButtonItem alloc] initWithTitle:@"Browse" style:UIBarButtonItemStyleBordered target:self action:@selector(browsePressed:)];
+        self.navigationItem.rightBarButtonItem = browseBarItem;
+    }
+
 }
 
 #pragma mark - Rotation
@@ -65,6 +73,12 @@
 - (void) dealloc {
     [allRecords release];
     [recordTable release];
+    [browseBarItem release];
+    
+    [browsePopOverController release];
+    
+    [browseType release];
+    [browseValue release];
     
     [super dealloc];
 }
@@ -78,11 +92,30 @@
     [allRecordsRequest setEntity:[NSEntityDescription entityForName:@"OAIRecord" inManagedObjectContext:oaiApp.managedObjectContext]];
     [allRecordsRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
     
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"identifier" ascending:YES];
+    [allRecordsRequest setSortDescriptors:@[sortDescriptor]];
+    
+    
+    if (browseType && browseValue){
+        NSRange range = [browseType rangeOfString:@"."];
+        NSString *schema = [browseType substringToIndex:(range.location)];
+        NSString *element = [browseType substringFromIndex:(range.location + 1)];
+    
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SUBQUERY(metadata, $b, $b.value CONTAINS[cd] %@ AND $b.element==[cd] %@ AND $b.schema==[cd] %@).@count > 0", browseValue, element, schema];
+        
+        [allRecordsRequest setPredicate:predicate];
+        allRecordsRequest.predicate = predicate;
+    }
+
+    
+    
     NSError * error = nil;
     NSArray * records = [[oaiApp.managedObjectContext executeFetchRequest:allRecordsRequest error:&error] retain];
     [allRecordsRequest release];
     
     //[pool release];
+    
     
     NSMutableArray *helperArray = [[NSMutableArray alloc] initWithCapacity:[records count]];
     for (OAIRecord *record in records){
@@ -92,6 +125,47 @@
     [records release];
     
     self.allRecords = [helperArray autorelease];
+}
+
+- (void) fetchRecordsFromDBWithSearch:(NSString *)search{
+    NSFetchRequest * allRecordsRequest = [[NSFetchRequest alloc] init];
+    [allRecordsRequest setEntity:[NSEntityDescription entityForName:@"OAIRecord" inManagedObjectContext:oaiApp.managedObjectContext]];
+    [allRecordsRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    
+    if (![search isEqualToString:@""]){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SUBQUERY(metadata, $b, $b.value CONTAINS[cd] %@).@count > 0", search];
+        //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SUBQUERY(metadata, $b, $b.value CONTAINS[cd] %@ AND $b.element==[cd] 'title').@count > 0", search];
+        [allRecordsRequest setPredicate:predicate];
+        
+        //[allRecords filteredArrayUsingPredicate:predicate];
+        //[recordTable reloadData];
+    }
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"identifier" ascending:YES];
+    [allRecordsRequest setSortDescriptors:@[sortDescriptor]];
+    
+    
+    
+    NSError * error = nil;
+    NSArray * records = [[oaiApp.managedObjectContext executeFetchRequest:allRecordsRequest error:&error] retain];
+    [allRecordsRequest release];
+    
+    NSMutableArray *helperArray = [[NSMutableArray alloc] initWithCapacity:[records count]];
+    for (OAIRecord *record in records){
+        OAIRecordHelper *helper = [[OAIRecordHelper alloc] initWithOAIRecord:record];
+        [helperArray addObject:helper];
+    }
+    [records release];
+    
+    if (self.allRecords){
+        [allRecords release];
+        allRecords = nil;
+    }
+    allRecords = [[helperArray retain] autorelease];
+    
+    [recordTable reloadData];
 }
 
 - (void) deleteAllRecordsFromDB{
@@ -156,6 +230,16 @@
     [pool release];
 }
 
+- (void) browsePressed:(id)sender {
+    BrowseTypeViewController *browseTypeController  = [[BrowseTypeViewController alloc] initWithNibName:@"BrowseTypeView" bundle:[NSBundle mainBundle]];
+    browseTypeController.mainController = self;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:browseTypeController];
+    browsePopOverController = [[UIPopoverController alloc] initWithContentViewController:navController];
+    [browsePopOverController presentPopoverFromBarButtonItem:browseBarItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    [navController release];
+    [browseTypeController release];
+}
+
 #pragma mark - UITableView Datasource/Delegate
 
 - (int)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -216,6 +300,21 @@
     */
 }
 
+#pragma mark - Search Bar Delegate
+- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self fetchRecordsFromDBWithSearch:searchText];
+}
 
+#pragma mark - BrowseValue Delegate
+
+- (void)didSelectToBrowseByType:(NSString *)type andValue:(NSString *)value{
+    [browsePopOverController dismissPopoverAnimated:YES];
+    
+    RecordListViewController *controller = [[RecordListViewController alloc] initWithNibName:@"RecordListView" bundle:[NSBundle mainBundle]];
+    controller.browseType = type;
+    controller.browseValue = value;
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
 
 @end

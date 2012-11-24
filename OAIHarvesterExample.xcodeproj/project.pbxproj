@@ -26,6 +26,10 @@
 		526024F2165EC78500F8ED0D /* MetadataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526024EF165EC78500F8ED0D /* MetadataCell.xib */; };
 		526024F3165EC78500F8ED0D /* MetadataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 526024F1165EC78500F8ED0D /* MetadataCell.m */; };
 		526024FD165ECA9C00F8ED0D /* recent_header_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 526024FC165ECA9C00F8ED0D /* recent_header_bg.png */; };
+		526025011660A2D800F8ED0D /* BrowseTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526024FF1660A2D700F8ED0D /* BrowseTypeViewController.m */; };
+		526025021660A2D800F8ED0D /* BrowseTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526025001660A2D700F8ED0D /* BrowseTypeView.xib */; };
+		526025061660ACD900F8ED0D /* BrowseValueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526025031660ACD700F8ED0D /* BrowseValueView.xib */; };
+		526025071660ACD900F8ED0D /* BrowseValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526025051660ACD900F8ED0D /* BrowseValueViewController.m */; };
 		527291701642D8E70020F38D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5272916F1642D8E70020F38D /* UIKit.framework */; };
 		527291721642D8E70020F38D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 527291711642D8E70020F38D /* Foundation.framework */; };
 		527291741642D8E70020F38D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 527291731642D8E70020F38D /* CoreGraphics.framework */; };
@@ -104,6 +108,12 @@
 		526024F0165EC78500F8ED0D /* MetadataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetadataCell.h; sourceTree = "<group>"; };
 		526024F1165EC78500F8ED0D /* MetadataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetadataCell.m; sourceTree = "<group>"; };
 		526024FC165ECA9C00F8ED0D /* recent_header_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recent_header_bg.png; sourceTree = "<group>"; };
+		526024FE1660A2D600F8ED0D /* BrowseTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseTypeViewController.h; sourceTree = "<group>"; };
+		526024FF1660A2D700F8ED0D /* BrowseTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseTypeViewController.m; sourceTree = "<group>"; };
+		526025001660A2D700F8ED0D /* BrowseTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowseTypeView.xib; sourceTree = "<group>"; };
+		526025031660ACD700F8ED0D /* BrowseValueView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowseValueView.xib; sourceTree = "<group>"; };
+		526025041660ACD800F8ED0D /* BrowseValueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseValueViewController.h; sourceTree = "<group>"; };
+		526025051660ACD900F8ED0D /* BrowseValueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseValueViewController.m; sourceTree = "<group>"; };
 		5272916B1642D8E70020F38D /* OAIHarvesterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OAIHarvesterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5272916F1642D8E70020F38D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		527291711642D8E70020F38D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -263,6 +273,12 @@
 				52DD3FAF16557D83002B90EB /* ThumbnailView.h */,
 				52DD3FB016557D83002B90EB /* ThumbnailView.m */,
 				52DD3FAB16557D02002B90EB /* ThumbnailView.xib */,
+				526024FE1660A2D600F8ED0D /* BrowseTypeViewController.h */,
+				526024FF1660A2D700F8ED0D /* BrowseTypeViewController.m */,
+				526025001660A2D700F8ED0D /* BrowseTypeView.xib */,
+				526025041660ACD800F8ED0D /* BrowseValueViewController.h */,
+				526025051660ACD900F8ED0D /* BrowseValueViewController.m */,
+				526025031660ACD700F8ED0D /* BrowseValueView.xib */,
 			);
 			path = "view controllers";
 			sourceTree = "<group>";
@@ -576,6 +592,8 @@
 				526024ED165EBB6800F8ED0D /* MetadataView.xib in Resources */,
 				526024F2165EC78500F8ED0D /* MetadataCell.xib in Resources */,
 				526024FD165ECA9C00F8ED0D /* recent_header_bg.png in Resources */,
+				526025021660A2D800F8ED0D /* BrowseTypeView.xib in Resources */,
+				526025061660ACD900F8ED0D /* BrowseValueView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +646,8 @@
 				52DD3FB41655819F002B90EB /* ReaderViewController.m in Sources */,
 				526024EC165EBB6800F8ED0D /* MetadataViewController.m in Sources */,
 				526024F3165EC78500F8ED0D /* MetadataCell.m in Sources */,
+				526025011660A2D800F8ED0D /* BrowseTypeViewController.m in Sources */,
+				526025071660ACD900F8ED0D /* BrowseValueViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

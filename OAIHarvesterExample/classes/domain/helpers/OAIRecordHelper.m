@@ -189,7 +189,7 @@
 - (NSArray *) getMetadataDictionary {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    NSArray *displayableMetadataArray = [NSArray arrayWithObjects:@"dc.title", @"dc.creator", @"dc.date", @"dc.publisher", @"dc.subject", @"dc.source", @"dc.language", @"dc.extent", @"dc.type", @"europeana.dataProvider", @"europeana.rights", @"europeana.isShownAt", nil];
+    NSArray *displayableMetadataArray = [NSArray arrayWithObjects:@"dc.title", @"dc.creator", @"dc.date", @"dc.publisher", @"dc.subject",@"dc.spatial", @"dc.source", @"dc.language", @"dc.extent", @"dc.type", @"europeana.dataProvider", @"europeana.rights", @"europeana.isShownAt", nil];
     
     for (NSString * displayableMetadata in displayableMetadataArray){
         NSRange range = [displayableMetadata rangeOfString:@"."];

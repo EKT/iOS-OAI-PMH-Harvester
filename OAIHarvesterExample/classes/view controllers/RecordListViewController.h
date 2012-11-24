@@ -16,14 +16,23 @@
 #import "PageViewController.h"
 #import "ReaderViewController.h"
 #import "MetadataViewController.h"
+#import "BrowseTypeViewController.h"
 
-@interface RecordListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface RecordListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, BrowseValueDelegate> {
     
     NSArray *allRecords;
     
     UITableView *recordTable;
+    UIBarButtonItem *browseBarItem;
     
+    UIPopoverController *browsePopOverController;
+    
+    NSString *browseType;
+    NSString *browseValue;
 }
+
+@property (nonatomic, retain) NSString *browseType;
+@property (nonatomic, retain) NSString *browseValue;
 
 @property (nonatomic, retain) IBOutlet UITableView *recordTable;
 
