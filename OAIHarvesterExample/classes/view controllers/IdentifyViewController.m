@@ -210,9 +210,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row==6){
-        RecordListViewController *controller = [[RecordListViewController alloc] initWithNibName:@"RecordListView" bundle:[NSBundle mainBundle]];
-        [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
+        if (IS_IPAD){
+            RecordGridViewController *controller = [[RecordGridViewController alloc] initWithNibName:@"RecordGridView" bundle:[NSBundle mainBundle]];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        }
+        else {
+            RecordListViewController *controller = [[RecordListViewController alloc] initWithNibName:@"RecordListView" bundle:[NSBundle mainBundle]];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        }
     }
 }
 

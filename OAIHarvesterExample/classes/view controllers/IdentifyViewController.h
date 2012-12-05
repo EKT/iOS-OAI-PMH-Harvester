@@ -10,6 +10,7 @@
 #import "IdentifyCell.h"
 #import "IdentifyButtonCell.h"
 #import "RecordListViewController.h"
+#import "RecordGridViewController.h"
 
 @interface IdentifyViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
  

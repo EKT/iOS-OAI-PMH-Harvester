@@ -23,7 +23,7 @@
     #define IS_WIDESCREEN (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON)
     #define IS_IPHONE ([[[UIDevice currentDevice] model ] rangeOfString:@"iPhone"].length>0)
     #define IS_IPOD   ([[[UIDevice currentDevice]model] rangeOfString:@"iPod"].length>0)
-    #define IS_IPAD              (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    #define IS_IPAD (![[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)] || [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     #define IS_IPHONE_5 (!IS_IPAD && IS_WIDESCREEN)
 
     //Parameters

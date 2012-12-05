@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521E1863166FEF1E00B80E1B /* GMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 521E1859166FEF1E00B80E1B /* GMGridView.m */; };
+		521E1864166FEF1E00B80E1B /* GMGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 521E185C166FEF1E00B80E1B /* GMGridViewCell.m */; };
+		521E1865166FEF1E00B80E1B /* GMGridViewLayoutStrategies.m in Sources */ = {isa = PBXBuildFile; fileRef = 521E185E166FEF1E00B80E1B /* GMGridViewLayoutStrategies.m */; };
+		521E1866166FEF1E00B80E1B /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 521E1860166FEF1E00B80E1B /* UIGestureRecognizer+GMGridViewAdditions.m */; };
+		521E1867166FEF1E00B80E1B /* UIView+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 521E1862166FEF1E00B80E1B /* UIView+GMGridViewAdditions.m */; };
 		522599A9164552D7007E6097 /* ResumptionToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 522599A8164552D7007E6097 /* ResumptionToken.m */; };
 		522599C0164584B1007E6097 /* Identifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 522599BF164584B1007E6097 /* Identifier.m */; };
 		523B0DBA164FE3A60005A058 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523B0DB9164FE3A60005A058 /* CoreData.framework */; };
@@ -21,6 +26,11 @@
 		523B0DEC164FEFDF0005A058 /* IdentifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 523B0DEA164FEFDF0005A058 /* IdentifyCell.m */; };
 		523B0DED164FEFDF0005A058 /* IdentifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523B0DEB164FEFDF0005A058 /* IdentifyCell.xib */; };
 		523B0DEF164FF0810005A058 /* identify_cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 523B0DEE164FF0810005A058 /* identify_cell_bg.png */; };
+		5248354E166BFF1E000119C0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5248354D166BFF1E000119C0 /* QuartzCore.framework */; };
+		52483552166BFF79000119C0 /* RecordGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52483550166BFF79000119C0 /* RecordGridViewController.m */; };
+		52483553166BFF79000119C0 /* RecordGridView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52483551166BFF79000119C0 /* RecordGridView.xib */; };
+		52483557166C053F000119C0 /* RecordGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52483554166C053F000119C0 /* RecordGridCell.xib */; };
+		52483558166C053F000119C0 /* RecordGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52483556166C053F000119C0 /* RecordGridCell.m */; };
 		526024EC165EBB6800F8ED0D /* MetadataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526024EA165EBB6800F8ED0D /* MetadataViewController.m */; };
 		526024ED165EBB6800F8ED0D /* MetadataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526024EB165EBB6800F8ED0D /* MetadataView.xib */; };
 		526024F2165EC78500F8ED0D /* MetadataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526024EF165EC78500F8ED0D /* MetadataCell.xib */; };
@@ -81,6 +91,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		521E1857166FEF1E00B80E1B /* GMGridView-Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMGridView-Constants.h"; sourceTree = "<group>"; };
+		521E1858166FEF1E00B80E1B /* GMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGridView.h; sourceTree = "<group>"; };
+		521E1859166FEF1E00B80E1B /* GMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGridView.m; sourceTree = "<group>"; };
+		521E185A166FEF1E00B80E1B /* GMGridViewCell+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMGridViewCell+Extended.h"; sourceTree = "<group>"; };
+		521E185B166FEF1E00B80E1B /* GMGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGridViewCell.h; sourceTree = "<group>"; };
+		521E185C166FEF1E00B80E1B /* GMGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGridViewCell.m; sourceTree = "<group>"; };
+		521E185D166FEF1E00B80E1B /* GMGridViewLayoutStrategies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGridViewLayoutStrategies.h; sourceTree = "<group>"; };
+		521E185E166FEF1E00B80E1B /* GMGridViewLayoutStrategies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGridViewLayoutStrategies.m; sourceTree = "<group>"; };
+		521E185F166FEF1E00B80E1B /* UIGestureRecognizer+GMGridViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+GMGridViewAdditions.h"; sourceTree = "<group>"; };
+		521E1860166FEF1E00B80E1B /* UIGestureRecognizer+GMGridViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+GMGridViewAdditions.m"; sourceTree = "<group>"; };
+		521E1861166FEF1E00B80E1B /* UIView+GMGridViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GMGridViewAdditions.h"; sourceTree = "<group>"; };
+		521E1862166FEF1E00B80E1B /* UIView+GMGridViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GMGridViewAdditions.m"; sourceTree = "<group>"; };
 		522599A7164552D7007E6097 /* ResumptionToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumptionToken.h; sourceTree = "<group>"; };
 		522599A8164552D7007E6097 /* ResumptionToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumptionToken.m; sourceTree = "<group>"; };
 		522599BE164584B1007E6097 /* Identifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Identifier.h; sourceTree = "<group>"; };
@@ -101,6 +123,13 @@
 		523B0DEA164FEFDF0005A058 /* IdentifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentifyCell.m; sourceTree = "<group>"; };
 		523B0DEB164FEFDF0005A058 /* IdentifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdentifyCell.xib; sourceTree = "<group>"; };
 		523B0DEE164FF0810005A058 /* identify_cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = identify_cell_bg.png; sourceTree = "<group>"; };
+		5248354D166BFF1E000119C0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5248354F166BFF78000119C0 /* RecordGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordGridViewController.h; sourceTree = "<group>"; };
+		52483550166BFF79000119C0 /* RecordGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordGridViewController.m; sourceTree = "<group>"; };
+		52483551166BFF79000119C0 /* RecordGridView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordGridView.xib; sourceTree = "<group>"; };
+		52483554166C053F000119C0 /* RecordGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordGridCell.xib; sourceTree = "<group>"; };
+		52483555166C053F000119C0 /* RecordGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordGridCell.h; sourceTree = "<group>"; };
+		52483556166C053F000119C0 /* RecordGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordGridCell.m; sourceTree = "<group>"; };
 		526024E9165EBB6800F8ED0D /* MetadataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetadataViewController.h; sourceTree = "<group>"; };
 		526024EA165EBB6800F8ED0D /* MetadataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetadataViewController.m; sourceTree = "<group>"; };
 		526024EB165EBB6800F8ED0D /* MetadataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetadataView.xib; sourceTree = "<group>"; };
@@ -208,6 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5248354E166BFF1E000119C0 /* QuartzCore.framework in Frameworks */,
 				523B0DBA164FE3A60005A058 /* CoreData.framework in Frameworks */,
 				527291D51642DCAA0020F38D /* libxml2.dylib in Frameworks */,
 				527291701642D8E70020F38D /* UIKit.framework in Frameworks */,
@@ -219,6 +249,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		521E1856166FEF1E00B80E1B /* GMGridView */ = {
+			isa = PBXGroup;
+			children = (
+				521E1857166FEF1E00B80E1B /* GMGridView-Constants.h */,
+				521E1858166FEF1E00B80E1B /* GMGridView.h */,
+				521E1859166FEF1E00B80E1B /* GMGridView.m */,
+				521E185A166FEF1E00B80E1B /* GMGridViewCell+Extended.h */,
+				521E185B166FEF1E00B80E1B /* GMGridViewCell.h */,
+				521E185C166FEF1E00B80E1B /* GMGridViewCell.m */,
+				521E185D166FEF1E00B80E1B /* GMGridViewLayoutStrategies.h */,
+				521E185E166FEF1E00B80E1B /* GMGridViewLayoutStrategies.m */,
+				521E185F166FEF1E00B80E1B /* UIGestureRecognizer+GMGridViewAdditions.h */,
+				521E1860166FEF1E00B80E1B /* UIGestureRecognizer+GMGridViewAdditions.m */,
+				521E1861166FEF1E00B80E1B /* UIView+GMGridViewAdditions.h */,
+				521E1862166FEF1E00B80E1B /* UIView+GMGridViewAdditions.m */,
+			);
+			path = GMGridView;
+			sourceTree = "<group>";
+		};
 		523B0DBD164FE5E40005A058 /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +311,9 @@
 				52B42D551650277200A207A4 /* RecordListViewController.h */,
 				52B42D561650277200A207A4 /* RecordListViewController.m */,
 				52B42D571650277200A207A4 /* RecordListView.xib */,
+				5248354F166BFF78000119C0 /* RecordGridViewController.h */,
+				52483550166BFF79000119C0 /* RecordGridViewController.m */,
+				52483551166BFF79000119C0 /* RecordGridView.xib */,
 				526024E9165EBB6800F8ED0D /* MetadataViewController.h */,
 				526024EA165EBB6800F8ED0D /* MetadataViewController.m */,
 				526024EB165EBB6800F8ED0D /* MetadataView.xib */,
@@ -318,6 +370,9 @@
 				527323CD1651963B0067DF4E /* RecordCell.h */,
 				527323CE1651963B0067DF4E /* RecordCell.m */,
 				527323CC1651963B0067DF4E /* RecordCell.xib */,
+				52483555166C053F000119C0 /* RecordGridCell.h */,
+				52483556166C053F000119C0 /* RecordGridCell.m */,
+				52483554166C053F000119C0 /* RecordGridCell.xib */,
 				526024F0165EC78500F8ED0D /* MetadataCell.h */,
 				526024F1165EC78500F8ED0D /* MetadataCell.m */,
 				526024EF165EC78500F8ED0D /* MetadataCell.xib */,
@@ -328,6 +383,7 @@
 		527291601642D8E70020F38D = {
 			isa = PBXGroup;
 			children = (
+				5248354D166BFF1E000119C0 /* QuartzCore.framework */,
 				523B0DB9164FE3A60005A058 /* CoreData.framework */,
 				527291D41642DCAA0020F38D /* libxml2.dylib */,
 				52D6AA771644524F00CF20C1 /* OAIHarvester */,
@@ -391,6 +447,7 @@
 		527323D51651A7E80067DF4E /* utilities */ = {
 			isa = PBXGroup;
 			children = (
+				521E1856166FEF1E00B80E1B /* GMGridView */,
 				527323D61651A8010067DF4E /* FastImageView.h */,
 				527323D71651A8010067DF4E /* FastImageView.m */,
 			);
@@ -594,6 +651,8 @@
 				526024FD165ECA9C00F8ED0D /* recent_header_bg.png in Resources */,
 				526025021660A2D800F8ED0D /* BrowseTypeView.xib in Resources */,
 				526025061660ACD900F8ED0D /* BrowseValueView.xib in Resources */,
+				52483553166BFF79000119C0 /* RecordGridView.xib in Resources */,
+				52483557166C053F000119C0 /* RecordGridCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,6 +707,13 @@
 				526024F3165EC78500F8ED0D /* MetadataCell.m in Sources */,
 				526025011660A2D800F8ED0D /* BrowseTypeViewController.m in Sources */,
 				526025071660ACD900F8ED0D /* BrowseValueViewController.m in Sources */,
+				52483552166BFF79000119C0 /* RecordGridViewController.m in Sources */,
+				52483558166C053F000119C0 /* RecordGridCell.m in Sources */,
+				521E1863166FEF1E00B80E1B /* GMGridView.m in Sources */,
+				521E1864166FEF1E00B80E1B /* GMGridViewCell.m in Sources */,
+				521E1865166FEF1E00B80E1B /* GMGridViewLayoutStrategies.m in Sources */,
+				521E1866166FEF1E00B80E1B /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */,
+				521E1867166FEF1E00B80E1B /* UIView+GMGridViewAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +806,7 @@
 					"\"$(SRCROOT)/../GitHub/OAI-PMH-Harvester-for-ObjC/DerivedData/OAIHarvester/Build/Intermediates/OAIHarvester.build/Debug-iphoneos/OAIHarvester.build/Objects-normal/armv7s\"",
 					"\"$(SRCROOT)/../GitHub/OAI-PMH-Harvester-for-ObjC/DerivedData/OAIHarvester/Build/Products/Debug-iphoneos\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7s armv7";
@@ -765,6 +832,7 @@
 					"\"$(SRCROOT)/../GitHub/OAI-PMH-Harvester-for-ObjC/DerivedData/OAIHarvester/Build/Intermediates/OAIHarvester.build/Debug-iphoneos/OAIHarvester.build/Objects-normal/armv7s\"",
 					"\"$(SRCROOT)/../GitHub/OAI-PMH-Harvester-for-ObjC/DerivedData/OAIHarvester/Build/Products/Debug-iphoneos\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7s armv7";

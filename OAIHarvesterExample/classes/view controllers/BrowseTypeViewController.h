@@ -20,10 +20,10 @@
     
     UITableView *tableView;
     
-    RecordListViewController *mainController;
+    UIViewController *mainController;
 }
 
-@property (nonatomic, retain) RecordListViewController *mainController;
+@property (nonatomic, retain) UIViewController *mainController;
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 
